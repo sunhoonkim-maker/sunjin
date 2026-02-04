@@ -15,72 +15,58 @@
         body { font-family: 'Pretendard', sans-serif; background: var(--sj-gray); color: #333; line-height: 1.6; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         
-        /* Header & Navigation */
-        header { background: var(--white); padding: 1rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow); border-bottom: 4px solid var(--sj-red); }
-        .logo { font-size: 1.6rem; font-weight: 900; color: var(--sj-red); text-transform: lowercase; }
+        /* Header */
+        header { background: var(--white); padding: 0.8rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow); border-bottom: 4px solid var(--sj-red); }
+        .flex-between { display: flex; justify-content: space-between; align-items: center; }
+        .logo-img { height: 35px; cursor: pointer; }
         .nav-links { display: flex; gap: 12px; }
         .nav-btn { background: #f8f9fa; border: 1px solid #eee; padding: 10px 24px; font-weight: 700; color: #555; cursor: pointer; border-radius: 50px; transition: 0.3s; }
         .nav-btn.active { background: var(--sj-red); color: var(--white); border-color: var(--sj-red); box-shadow: 0 4px 15px rgba(228, 51, 21, 0.3); }
 
         /* Hero Dashboard */
         .hero-dashboard { background: linear-gradient(135deg, #fff 0%, #fff5f4 100%); padding: 60px 0; border-radius: 0 0 50px 50px; text-align: center; margin-bottom: 40px; }
-        .hero-dashboard h1 { font-size: 2.5rem; color: #111; margin-bottom: 12px; letter-spacing: -1.5px; }
+        .hero-dashboard h1 { font-size: 2.3rem; color: #111; margin-bottom: 12px; letter-spacing: -1.5px; font-weight: 900; }
         .hero-dashboard p { font-size: 1.1rem; color: #666; margin-bottom: 30px; }
         .btn-group { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
-        .link-btn { padding: 14px 28px; border-radius: 12px; text-decoration: none; font-weight: 800; transition: 0.3s; color: #fff; font-size: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .link-btn { padding: 14px 28px; border-radius: 12px; text-decoration: none; font-weight: 800; transition: 0.3s; color: #fff; font-size: 1rem; }
         .btn-pre { background: var(--sj-green); }
         .btn-post { background: var(--sj-orange); }
-        .link-btn:hover { transform: translateY(-5px); filter: brightness(1.1); }
 
         /* Content Sections */
         .content-section { display: none; animation: slideUp 0.5s ease; padding-bottom: 60px; }
         .content-section.active { display: block; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Learning Guide & Materials (Newly Added) */
-        .guide-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 40px; }
+        /* Panels */
+        .guide-grid { display: grid; grid-template-columns: 2.2fr 1fr; gap: 24px; margin-bottom: 40px; }
         .card-panel { background: var(--white); border-radius: 24px; padding: 32px; box-shadow: var(--shadow); }
         .panel-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
         .panel-title::before { content: ''; width: 6px; height: 24px; background: var(--sj-green); border-radius: 3px; }
         
-        .material-list { list-style: none; }
-        .material-item { display: flex; align-items: center; justify-content: space-between; padding: 16px; border-bottom: 1px solid #f0f0f0; transition: 0.2s; }
-        .material-item:hover { background: #fdfdfd; }
-        .material-item .info b { display: block; font-size: 1rem; color: #333; }
-        .material-item .info span { font-size: 0.85rem; color: #999; }
-        .download-btn { padding: 8px 16px; border-radius: 8px; background: #f2f2f2; color: #555; text-decoration: none; font-size: 0.85rem; font-weight: 700; transition: 0.3s; }
-        .download-btn:hover { background: var(--sj-red); color: #fff; }
-
-        /* Custom Timeline Table */
-        .schedule-card { background: var(--white); border-radius: 24px; padding: 32px; box-shadow: var(--shadow); overflow: hidden; }
         .custom-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
-        .custom-table th { padding: 15px; text-align: left; color: #888; font-size: 0.9rem; font-weight: 500; }
-        .custom-table tr td { background: #fcfcfc; padding: 20px 15px; border-top: 1px solid #f4f4f4; border-bottom: 1px solid #f4f4f4; }
-        .custom-table tr td:first-child { border-left: 1px solid #f4f4f4; border-radius: 12px 0 0 12px; }
+        .custom-table tr td { background: #fcfcfc; padding: 20px 15px; border-top: 1px solid #f4f4f4; border-bottom: 1px solid #f4f4f4; vertical-align: middle; }
+        .custom-table tr td:first-child { border-left: 1px solid #f4f4f4; border-radius: 12px 0 0 12px; width: 150px; font-weight: 700; color: #666; }
         .custom-table tr td:last-child { border-right: 1px solid #f4f4f4; border-radius: 0 12px 12px 0; }
-        .track-tag { padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 800; color: var(--sj-red); background: #fff1f0; }
+        .track-tag { display: inline-block; padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 800; color: var(--sj-red); background: #fff1f0; white-space: nowrap; }
 
-        /* Showcase Gallery */
-        .gallery-header { margin-bottom: 30px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 24px; }
-        .project-card { background: var(--white); border-radius: 24px; overflow: hidden; transition: 0.4s; border: 1px solid #eee; position: relative; }
-        .project-card:hover { transform: translateY(-12px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--sj-red); }
-        .thumb { height: 200px; background: #e9ecef; overflow: hidden; position: relative; }
-        .thumb img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .project-card:hover .thumb img { transform: scale(1.1); }
+        /* Showcase Cards */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+        .project-card { background: var(--white); border-radius: 24px; overflow: hidden; border: 1px solid #eee; transition: 0.4s; cursor: pointer; }
+        .project-card:hover { transform: translateY(-10px); border-color: var(--sj-red); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+        .thumb { height: 180px; background: #eee; overflow: hidden; }
+        .thumb img { width: 100%; height: 100%; object-fit: cover; }
         .body { padding: 24px; }
-        .body .cat { font-size: 0.75rem; color: var(--sj-green); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
-        .body h4 { font-size: 1.3rem; margin: 8px 0 12px; font-weight: 800; }
-        .body p { font-size: 0.95rem; color: #777; margin-bottom: 20px; }
-        .foot { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f4f4f4; padding-top: 15px; font-size: 0.85rem; color: #999; }
+        .body .cat { font-size: 0.75rem; color: var(--sj-green); font-weight: 800; }
+        .body h4 { font-size: 1.2rem; margin: 8px 0; font-weight: 800; }
+        .foot { border-top: 1px solid #f4f4f4; padding-top: 15px; font-size: 0.85rem; color: #999; display: flex; justify-content: space-between; }
 
-        footer { padding: 60px 0; text-align: center; color: #bbb; border-top: 1px solid #ddd; margin-top: 40px; }
+        footer { padding: 60px 0; text-align: center; color: #bbb; border-top: 1px solid #ddd; }
     </style>
 </head>
 <body>
     <header>
         <div class="container flex-between">
-            <div class="logo">sunjin</div>
+            <img src="https://www.sj.co.kr/images/common/logo.png" alt="선진 로고" class="logo-img" onclick="showSection('learning')">
             <nav class="nav-links">
                 <button onclick="showSection('learning')" id="nav-learning" class="nav-btn active">학습 가이드</button>
                 <button onclick="showSection('showcase')" id="nav-showcase" class="nav-btn">Gems 전시회</button>
@@ -90,9 +76,8 @@
 
     <div class="hero-dashboard">
         <div class="container">
-            <span style="color:var(--sj-red); font-weight: 800;">[cite: 3]</span>
             <h1>[선진] 26년 전반기 직무별 리터러시 교육</h1>
-            <p>Gemini와 Gems를 활용한 선진만의 스마트 워크플레이스 구축 프로젝트 [cite: 3, 15]</p>
+            <p>Gemini와 Gems를 활용한 선진 전사 AI 내재화 프로젝트 [cite: 3]</p>
             <div class="btn-group">
                 <a href="https://forms.gle/XUMqeauStPJPCXTC9" target="_blank" class="link-btn btn-pre">📝 사전 설문 참여</a>
                 <a href="https://forms.gle/VTq2F5H5yksgycs39" target="_blank" class="link-btn btn-post">📝 사후 설문 참여</a>
@@ -106,53 +91,38 @@
                 <div class="card-panel">
                     <h3 class="panel-title">상세 교육일정</h3>
                     <table class="custom-table">
-                        <thead><tr><th>날짜</th><th>트랙</th><th>강사</th><th>교육 내용</th></tr></thead>
                         <tbody id="scheduleBody"></tbody>
                     </table>
                 </div>
                 <div class="card-panel">
-                    <h3 class="panel-title">강의 교안 자료실</h3>
-                    <ul class="material-list">
-                        <li class="material-item">
-                            <div class="info"><b>[공통] Gemini 활용 가이드</b><span>PDF | 2.4MB</span></div>
-                            <a href="#" class="download-btn">받기</a>
-                        </li>
-                        <li class="material-item">
-                            <div class="info"><b>[영업] 농장주 데이터 분석</b><span>CSV/XLSX</span></div>
-                            <a href="#" class="download-btn">받기</a>
-                        </li>
-                        <li class="material-item">
-                            <div class="info"><b>[Gems] 프롬프트 템플릿</b><span>TXT</span></div>
-                            <a href="#" class="download-btn">받기</a>
-                        </li>
-                    </ul>
-                    <div style="margin-top: 30px; padding: 20px; background: #fff5f4; border-radius: 12px; font-size: 0.9rem;">
-                        <b style="color:var(--sj-red)">💡 안내사항</b><br>
-                        교육 전 반드시 사전 설문을 완료해 주세요. 실습 데이터는 강의 10분 전 활성화됩니다.
+                    <h3 class="panel-title">교육 운영 안내</h3>
+                    <div style="font-size: 0.95rem; color: #555;">
+                        <p>• <strong>문서 요약 표준 확립:</strong> 결재 문서 핵심 요약 프롬프트 최적화 [cite: 12, 13]</p>
+                        <p style="margin-top:8px;">• <strong>직무 맞춤 Gems 제작:</strong> 1인 1 AI 비서 제작 및 배포 [cite: 15, 16]</p>
+                        <p style="margin-top:8px;">• <strong>운영 방식:</strong> 온라인 라이브 강의 및 밀착 멘토링 [cite: 34]</p>
+                    </div>
+                    <div style="margin-top: 25px; padding: 20px; background: #fff5f4; border-radius: 12px; font-size: 0.9rem; border: 1px solid #ffe8e6;">
+                        <b style="color:var(--sj-red)">💡 공지사항</b><br>
+                        데이터 업데이트 지연 시 브라우저 새로고침(F5)을 눌러주세요.
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="showcase" class="content-section">
-            <div class="gallery-header">
+            <div class="flex-between" style="margin-bottom: 30px;">
                 <h3 class="section-title">Gems 결과물 전시관</h3>
-                <p>수강생들이 직접 구축한 선진 산업특화 AI 에이전트입니다. [cite: 15, 108]</p>
+                <button onclick="loadGems()" style="background:none; border:none; color:var(--sj-red); font-weight:700; cursor:pointer;">🔄 데이터 새로고침</button>
             </div>
             <div class="grid" id="projectGrid">
-                <div class="empty-msg" style="grid-column: 1/-1; text-align: center; padding: 100px; color: #aaa; background: #fff; border-radius: 24px;">
-                    아직 전시된 결과물이 없습니다. 교육 종료 후 실시간 업데이트 됩니다.
-                </div>
+                <div style="grid-column: 1/-1; text-align: center; padding: 80px; color: #aaa;">데이터를 불러오는 중입니다...</div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 SUNJIN x TEAMSPARTA. All rights reserved. [cite: 5]</p>
-    </footer>
+    <footer><p>&copy; 2026 SUNJIN x TEAMSPARTA. All rights reserved.</p></footer>
 
     <script>
-        // 제안서 기반 데이터 [cite: 35, 41, 46, 50, 56]
         const scheduleData = [
             { d: "2/12, 2/20, 2/26", t: "영업/마케팅", n: "박윤재", c: "사료 영업 전략 최적화: 농장주 RAG 연동 [cite: 35, 37]" },
             { d: "2/24, 2/26", t: "경영지원", n: "김안나", c: "행정 자동화 & 인사/전결 규정 Gems [cite: 56, 58]" },
@@ -161,6 +131,7 @@
             { d: "2/25", t: "R&D", n: "박윤재", c: "연구 가속화: 기술 문헌 요약 및 데이터 해석 [cite: 46, 48]" }
         ];
 
+        // --- 여기에 실제 구글 시트 CSV 주소를 입력하세요 ---
         const SHEET_CSV_URL = "여기에_게시된_CSV_링크를_넣으세요";
 
         function showSection(id) {
@@ -168,39 +139,44 @@
             document.getElementById(id).classList.add('active');
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('nav-' + id).classList.add('active');
+            if(id === 'showcase') loadGems();
         }
 
         document.getElementById('scheduleBody').innerHTML = scheduleData.map(s => `
             <tr>
-                <td style="font-weight:700; color:#666;">${s.d}</td>
-                <td><span class="track-tag">${s.t}</span></td>
-                <td><b>${s.n}</b></td>
+                <td>${s.d}</td>
+                <td style="text-align:center;"><span class="track-tag">${s.t}</span></td>
+                <td style="white-space:nowrap;"><b>${s.n}</b></td>
                 <td style="color:#555; font-size:0.9rem;">${s.c}</td>
             </tr>
         `).join('');
 
         async function loadGems() {
-            if (SHEET_CSV_URL.startsWith("여기에")) return;
+            if (!SHEET_CSV_URL || SHEET_CSV_URL.startsWith("여기에")) return;
             const grid = document.getElementById('projectGrid');
+            
             try {
-                const res = await fetch(SHEET_CSV_URL);
+                // 개선 포인트: URL 뒤에 시간값을 붙여 브라우저 캐시를 방지합니다.
+                const cacheBuster = `&t=${new Date().getTime()}`;
+                const res = await fetch(SHEET_CSV_URL + cacheBuster);
                 const text = await res.text();
                 const rows = text.split('\n').slice(1).map(row => row.split(','));
                 
-                if (rows.length > 0) {
+                if (rows.length > 0 && rows[0].length >= 2) {
                     grid.innerHTML = rows.map(row => `
                         <div class="project-card" onclick="window.open('${row[3].trim()}')">
-                            <div class="thumb"><img src="${getThumb(row[3].trim())}" onerror="this.src='https://via.placeholder.com/400x200?text=Gems+Preview'"></div>
+                            <div class="thumb"><img src="${getThumb(row[3].trim())}" onerror="this.src='https://via.placeholder.com/400x200?text=Sunjin+AI+Gems'"></div>
                             <div class="body">
                                 <span class="cat">#${row[0].trim()}</span>
                                 <h4>${row[1].trim()}</h4>
-                                <p>현업 시나리오 기반 맞춤형 Gems 에이전트</p>
-                                <div class="foot"><span>제작: ${row[2].trim()}</span><span>상세보기 →</span></div>
+                                <div class="foot"><span>제작: ${row[2].trim()}</span><span style="font-weight:700; color:var(--sj-red)">상세보기 →</span></div>
                             </div>
                         </div>
                     `).join('');
+                } else {
+                    grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:80px; color:#aaa;">아직 등록된 프로젝트가 없습니다.</div>';
                 }
-            } catch(e) { console.error(e); }
+            } catch(e) { grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:80px; color:#aaa;">데이터 로딩 중 오류가 발생했습니다.</div>'; }
         }
 
         function getThumb(url) {
@@ -208,7 +184,7 @@
             return `https://drive.google.com/uc?export=view&id=${url.split('id=')[1].split('&')[0]}`;
         }
 
-        window.onload = loadGems;
+        window.onload = () => { if(window.location.hash === '#showcase') showSection('showcase'); };
     </script>
 </body>
 </html>
