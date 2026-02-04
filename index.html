@@ -16,6 +16,7 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         
         header { background: var(--white); padding: 1.2rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow); border-bottom: 4px solid var(--sj-red); }
+        .flex-between { display: flex; justify-content: space-between; align-items: center; }
         .logo-text { font-size: 1.8rem; font-weight: 900; color: var(--sj-red); letter-spacing: 1px; cursor: pointer; text-transform: uppercase; }
         .nav-links { display: flex; gap: 12px; }
         .nav-btn { background: #f8f9fa; border: 1px solid #eee; padding: 10px 24px; font-weight: 700; color: #555; cursor: pointer; border-radius: 50px; }
@@ -30,13 +31,11 @@
         .content-section.active { display: block; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* 메인 레이아웃 가로 정렬 */
         .main-layout { display: grid; grid-template-columns: 1.8fr 1.2fr; gap: 24px; }
         .card-panel { background: var(--white); border-radius: 24px; padding: 32px; box-shadow: var(--shadow); }
         .panel-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
         .panel-title::before { content: ''; width: 6px; height: 24px; background: var(--sj-green); border-radius: 3px; }
 
-        /* 일정 리스트 (이미지 2번 스타일 적용) */
         .schedule-list { list-style: none; }
         .schedule-item { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid #f0f0f0; }
         .sch-date { width: 110px; font-size: 1.2rem; font-weight: 800; color: var(--sj-red); }
@@ -44,7 +43,6 @@
         .sch-title { font-size: 1.05rem; font-weight: 700; color: #333; }
         .sch-time { background: var(--sj-orange); color: #fff; padding: 6px 16px; border-radius: 8px; font-size: 0.9rem; font-weight: 700; white-space: nowrap; }
 
-        /* 교육 자료 버튼 (이미지 3번 스타일 적용) */
         .material-button { 
             display: flex; align-items: center; justify-content: space-between; 
             width: 100%; padding: 18px; margin-bottom: 12px; 
@@ -56,10 +54,10 @@
         .material-button span { font-size: 0.85rem; color: #888; }
         .go-icon { font-size: 1.2rem; color: var(--sj-green); font-weight: 900; }
 
-        /* Gems 전시회 필터 및 그리드 */
         .filter-group { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 25px; }
         .filter-btn { padding: 8px 18px; border-radius: 20px; border: 1px solid #ddd; background: #fff; cursor: pointer; font-weight: 600; }
         .filter-btn.active { background: var(--sj-green); color: #fff; border-color: var(--sj-green); }
+        
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
         .project-card { background: var(--white); border-radius: 24px; overflow: hidden; border: 1px solid #eee; transition: 0.4s; cursor: pointer; }
         .project-card:hover { border-color: var(--sj-red); transform: translateY(-10px); }
@@ -119,7 +117,7 @@
     <footer><p>&copy; 2026 SUNJIN x TEAMSPARTA. All rights reserved.</p></footer>
 
     <script>
-        // 1. 교육 일정 데이터 (이미지 2번 기반)
+        // 일정 데이터 [cite: 35, 41, 46, 50, 56]
         const scheduleData = [
             { d: "2/12(목)", t: "영업/마케팅 1차", tm: "13:00~17:00" },
             { d: "2/23(월)", t: "IT 직무 세션", tm: "13:00~17:00" },
@@ -131,7 +129,7 @@
             { d: "2/27(금)", t: "영업/마케팅 3차", tm: "13:00~17:00" }
         ];
 
-        // 2. 패들렛 링크 데이터 (이미지 3번 기반)
+        // 패들렛 링크 [cite: 125]
         const materials = [
             { n: "영업 / 마케팅", l: "https://padlet.com/biz14/sunjin_sales" },
             { n: "경영지원", l: "https://padlet.com/biz14/sunjin_support" },
@@ -140,13 +138,12 @@
             { n: "R&D", l: "https://padlet.com/biz14/sunjin_rd" }
         ];
 
-        // 3. 구글 시트 웹 게시 CSV URL (반드시 본인의 링크로 교체하세요)
-        const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/1cNcA4zuicYFIHXaYd1lIIAe_vHKJPcbMjUmFjTY-9po/pub?gid=0&single=true&output=csv";
+        // 새로운 구글 시트 웹 게시 CSV URL
+        const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQpslH9p7FpUl9_ulUOUuMEMRfe-n-d-Jn2wE0AbVUjaiYr9KH6f9K8w9wL4OU5uXlfFiAPdcKOaUYV/pub?output=csv";
 
         let allGems = [];
 
         function renderUI() {
-            // 일정 렌더링
             document.getElementById('scheduleList').innerHTML = scheduleData.map(s => `
                 <li class="schedule-item">
                     <div class="sch-date">${s.d}</div>
@@ -155,7 +152,6 @@
                 </li>
             `).join('');
 
-            // 자료 버튼 렌더링
             document.getElementById('materialButtons').innerHTML = materials.map(m => `
                 <a href="${m.l}" target="_blank" class="material-button">
                     <div><b>${m.n}</b><span>교안 및 실습 데이터 링크</span></div>
@@ -163,39 +159,58 @@
                 </a>
             `).join('');
 
-            // 필터 버튼 렌더링
             const cats = ["전체", "영업/마케팅", "경영지원", "IT 직무", "R&D", "생산 품질"];
             document.getElementById('filterGroup').innerHTML = cats.map(c => `
                 <button class="filter-btn ${c==='전체'?'active':''}" onclick="filterCategory('${c}')">${c}</button>
             `).join('');
         }
 
+        // 로딩 오류 개선을 위한 데이터 처리 함수 [cite: 107, 113]
         async function loadGems() {
             const grid = document.getElementById('projectGrid');
             grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:50px; color:#aaa;">데이터 로딩 중...</div>';
             
             try {
-                const res = await fetch(SHEET_CSV_URL + `?t=${Date.now()}`);
+                // 캐시 방지 파라미터 추가
+                const res = await fetch(`${SHEET_CSV_URL}&t=${Date.now()}`);
+                if (!res.ok) throw new Error('Network response was not ok');
+                
                 const text = await res.text();
-                // 이미지 7번 시트 구조: A(분류), B(프로젝트명), C(제작자), D(드라이브 링크)
-                allGems = text.split('\n').slice(1).map(row => {
+                
+                // CSV 파싱 로직 강화 (공백 및 줄바꿈 처리) 
+                allGems = text.split(/\r?\n/).slice(1).filter(line => line.trim() !== "").map(row => {
                     const cols = row.split(',');
-                    return { cat: cols[0]?.trim(), title: cols[1]?.trim(), author: cols[2]?.trim(), link: cols[3]?.trim() };
+                    return { 
+                        cat: cols[0]?.replace(/"/g, '').trim() || '', 
+                        title: cols[1]?.replace(/"/g, '').trim() || '', 
+                        author: cols[2]?.replace(/"/g, '').trim() || '', 
+                        link: cols[3]?.replace(/"/g, '').trim() || '#' 
+                    };
                 });
+                
+                // 초기 로드 시 "전체" 데이터 출력 
                 filterCategory('전체');
             } catch(e) {
-                grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:50px; color:#aaa;">로딩 실패. 시트 공유 설정을 확인하세요.</div>';
+                console.error('Fetch error:', e);
+                grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:50px; color:#aaa;">로딩 실패. 시트 게시 상태 및 URL을 확인하세요.</div>';
             }
         }
 
         function filterCategory(cat) {
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.toggle('active', btn.innerText === cat));
             const grid = document.getElementById('projectGrid');
-            const filtered = cat === '전체' ? allGems : allGems.filter(g => g.cat === cat);
             
+            // "전체"일 경우 모든 데이터 출력, 아닐 경우 필터링 
+            const filtered = (cat === '전체' || cat === '') ? allGems : allGems.filter(g => g.cat.includes(cat));
+            
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:50px; color:#aaa;">해당 카테고리에 결과물이 없습니다.</div>';
+                return;
+            }
+
             grid.innerHTML = filtered.map(g => `
                 <div class="project-card" onclick="window.open('${g.link}')">
-                    <div class="thumb"><img src="${getThumb(g.link)}" onerror="this.src='https://via.placeholder.com/400x200?text=Gems+Showcase'"></div>
+                    <div class="thumb"><img src="${getThumb(g.link)}" onerror="this.src='https://via.placeholder.com/400x200?text=Sunjin+AI+Gems'"></div>
                     <div class="body">
                         <span class="cat-tag">#${g.cat}</span>
                         <h4>${g.title}</h4>
@@ -207,8 +222,8 @@
 
         function getThumb(url) {
             if(!url || !url.includes('id=')) return '';
-            const id = url.split('id=')[1].split('&')[0];
-            return `https://drive.google.com/uc?export=view&id=${id}`;
+            const match = url.match(/id=([a-zA-Z0-9_-]+)/);
+            return match ? `https://drive.google.com/uc?export=view&id=${match[1]}` : '';
         }
 
         function showSection(id) {
@@ -216,10 +231,12 @@
             document.getElementById(id).classList.add('active');
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('nav-' + id).classList.add('active');
-            if(id === 'showcase' && allGems.length === 0) loadGems();
+            if(id === 'showcase') loadGems();
         }
 
         renderUI();
+        // 페이지 로드 시 전시회 데이터를 미리 불러오지 않고 섹션 이동 시 불러오도록 유지하거나, 
+        // 필요 시 여기서 loadGems()를 호출하여 선행 로드할 수 있습니다.
     </script>
 </body>
 </html>
