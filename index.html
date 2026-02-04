@@ -7,71 +7,50 @@
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
     <style>
         :root {
-            --sj-red: #E43315;    /* 선진 메인 레드 */
-            --sj-green: #8DC63F;  /* 선진 포인트 그린 */
-            --sj-orange: #F39800; /* 선진 포인트 오렌지 */
-            --sj-gray: #f8f9fa;
-            --sj-border: #eee;
+            --sj-red: #E43315; --sj-green: #8DC63F; --sj-orange: #F39800; --sj-gray: #f8f9fa;
         }
-
         * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family: 'Pretendard', sans-serif; background: #fff; color: #222; line-height: 1.6; }
+        body { font-family: 'Pretendard', sans-serif; background: #fff; color: #222; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         
-        /* Header */
+        /* Nav & Hero */
         header { padding: 15px 0; border-bottom: 4px solid var(--sj-red); background: #fff; position: sticky; top:0; z-index:100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .flex-between { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.4rem; font-weight: 800; color: var(--sj-red); text-transform: lowercase; }
-        .nav-btn { background: none; border: 1px solid #ddd; padding: 8px 20px; font-weight: 600; color: #666; cursor: pointer; border-radius: 20px; transition: 0.3s; margin-left: 10px; }
+        .logo { font-size: 1.4rem; font-weight: 800; color: var(--sj-red); }
+        .nav-btn { background: none; border: 1px solid #ddd; padding: 8px 20px; font-weight: 600; cursor: pointer; border-radius: 20px; margin-left: 10px; transition: 0.3s; }
         .nav-btn.active { background: var(--sj-red); color: #fff; border-color: var(--sj-red); }
 
-        /* Hero Section */
         .hero { background: var(--sj-gray); padding: 60px 0; text-align: center; border-bottom: 1px solid #eee; }
-        .hero h1 { font-size: 2.4rem; color: var(--sj-red); letter-spacing: -1.2px; margin-bottom: 15px; font-weight: 800; }
-        .hero p { font-size: 1.1rem; color: #555; margin-bottom: 30px; }
-        
-        .btn-group { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-        .link-btn { padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; }
-        .btn-survey-pre { background: var(--sj-green); color: #fff; }
-        .btn-survey-post { background: var(--sj-orange); color: #fff; }
-        .link-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .hero h1 { font-size: 2.2rem; color: var(--sj-red); margin-bottom: 15px; font-weight: 800; letter-spacing: -1px; }
+        .btn-group { display: flex; justify-content: center; gap: 12px; margin-top: 25px; }
+        .link-btn { padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.95rem; color:#fff; transition: 0.3s; }
+        .btn-survey-pre { background: var(--sj-green); }
+        .btn-survey-post { background: var(--sj-orange); }
 
-        /* Content Sections */
+        /* Sections */
         .content-section { display: none; padding: 50px 0; animation: fadeIn 0.4s ease; }
         .content-section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Integrated Info Box */
         .section-title { font-size: 1.7rem; border-left: 6px solid var(--sj-green); padding-left: 15px; margin-bottom: 30px; font-weight: 800; }
-        .info-box { background: #fff; border: 1px solid var(--sj-border); border-radius: 15px; padding: 30px; margin-bottom: 40px; }
-        .info-box h4 { color: var(--sj-red); margin-bottom: 15px; font-size: 1.25rem; font-weight: 700; }
-        .info-box p { font-size: 1rem; margin-bottom: 10px; color: #444; }
-        
-        /* Schedule Table */
-        .table-container { overflow-x: auto; border: 1px solid var(--sj-border); border-radius: 12px; }
-        .schedule-table { width: 100%; border-collapse: collapse; min-width: 750px; }
-        .schedule-table th { background: #fdfdfd; padding: 18px; text-align: left; border-bottom: 2px solid var(--sj-border); font-size: 0.9rem; color: #666; }
-        .schedule-table td { padding: 18px; border-bottom: 1px solid var(--sj-border); font-size: 0.95rem; vertical-align: top; }
+        .info-box { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 30px; margin-bottom: 40px; }
+        .table-container { overflow-x: auto; border: 1px solid #eee; border-radius: 12px; }
+        .schedule-table { width: 100%; border-collapse: collapse; min-width: 700px; }
+        .schedule-table th { background: #fdfdfd; padding: 15px; text-align: left; border-bottom: 2px solid #eee; font-size: 0.9rem; }
+        .schedule-table td { padding: 15px; border-bottom: 1px solid #eee; font-size: 0.9rem; }
 
-        /* 보완된 Showcase 카드 디자인 */
+        /* Showcase Cards */
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
-        .card { border: 1px solid var(--sj-border); border-radius: 20px; overflow: hidden; background: #fff; transition: 0.3s; cursor: pointer; display: flex; flex-direction: column; }
+        .card { border: 1px solid #eee; border-radius: 20px; overflow: hidden; background: #fff; transition: 0.3s; cursor: pointer; }
         .card:hover { border-color: var(--sj-red); transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
-        
-        /* 카드 상단 미리보기 영역 (썸네일) */
-        .card-thumb { height: 180px; background: #eee; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .card-thumb { height: 180px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .card-thumb img { width: 100%; height: 100%; object-fit: cover; }
-        .card-thumb .icon-box { font-size: 3rem; opacity: 0.3; }
-        
-        .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
-        .tag { font-size: 0.8rem; color: var(--sj-green); font-weight: 800; margin-bottom: 12px; display: inline-block; padding: 2px 10px; border: 1px solid var(--sj-green); border-radius: 4px; width: fit-content; }
-        .card h4 { font-size: 1.25rem; margin-bottom: 12px; font-weight: 700; color: #111; line-height: 1.3; }
-        .card p { font-size: 0.95rem; color: #666; margin-bottom: 20px; flex-grow: 1; }
-        .card-footer { border-top: 1px solid #f4f4f4; padding-top: 15px; display: flex; justify-content: space-between; align-items: center; }
-        .author-info { font-size: 0.85rem; color: #999; font-weight: 500; }
-        .view-link { font-size: 0.85rem; color: var(--sj-red); font-weight: 700; }
+        .card-body { padding: 25px; }
+        .tag { font-size: 0.75rem; color: var(--sj-green); font-weight: 800; margin-bottom: 10px; display: inline-block; padding: 2px 8px; border: 1px solid var(--sj-green); border-radius: 4px; }
+        .card h4 { font-size: 1.2rem; margin-bottom: 10px; font-weight: 700; }
+        .author { font-size: 0.85rem; color: #999; margin-top: 15px; border-top: 1px solid #f4f4f4; padding-top: 15px; }
 
-        footer { padding: 60px 0; text-align: center; color: #bbb; font-size: 0.85rem; border-top: 1px solid var(--sj-border); margin-top: 80px; }
+        footer { padding: 50px 0; text-align: center; color: #bbb; font-size: 0.85rem; border-top: 1px solid #eee; margin-top: 80px; }
     </style>
 </head>
 <body>
@@ -89,10 +68,10 @@
         <section class="hero">
             <div class="container">
                 <h1>[선진] 26년 전반기 직무별 리터러시 교육</h1>
-                <p>생성형 AI 리터러시 진단부터 직무 맞춤 Gems 제작까지</p>
+                <p>산업특화 AI 활용을 통한 실무 혁신 과정</p>
                 <div class="btn-group">
-                    <a href="https://forms.gle/XUMqeauStPJPCXTC9" target="_blank" class="link-btn btn-survey-pre">📝 사전 설문 참여</a>
-                    <a href="https://forms.gle/VTq2F5H5yksgycs39" target="_blank" class="link-btn btn-survey-post">📝 사후 설문 참여</a>
+                    <a href="https://forms.gle/XUMqeauStPJPCXTC9" target="_blank" class="link-btn btn-survey-pre">📝 사전 설문</a>
+                    <a href="https://forms.gle/VTq2F5H5yksgycs39" target="_blank" class="link-btn btn-survey-post">📝 사후 설문</a>
                 </div>
             </div>
         </section>
@@ -101,94 +80,82 @@
             <section id="info" class="content-section active">
                 <div class="info-box">
                     <h4>핵심 목표 및 운영</h4>
-                    <p>• <strong>문서 요약 표준 확립:</strong> 결재 문서 핵심 요약 프롬프트 최적화</p>
-                    <p>• <strong>1인 1 Gems 완성:</strong> 전사 활용 가능한 직무별 맞춤형 비서 제작</p>
-                    <p>• <strong>운영 방식:</strong> 100% 온라인 라이브 (이론/실습 2H + 심화 멘토링 2H)</p>
-                    <p>• <strong>기술 지원:</strong> 메인 강사 1인 및 소회의실 전담 기술 튜터 2인 배치</p>
+                    <p>• <strong>문서 요약 표준:</strong> 결론-근거-기대효과 기반의 요약 프롬프트 수립</p>
+                    <p>• <strong>직무별 Gems:</strong> 수강생 전원 실무 자동화 에이전트 1종 개발</p>
+                    <p>• <strong>운영:</strong> 온라인 라이브 강의 및 튜터 기반 분반 멘토링</p>
                 </div>
-
                 <h3 class="section-title">상세 교육일정</h3>
-                <div class="table-container">
-                    <table class="schedule-table">
-                        <thead>
-                            <tr>
-                                <th>날짜</th>
-                                <th>직무 트랙</th>
-                                <th>강사</th>
-                                <th>핵심 교육 내용</th>
-                            </tr>
-                        </thead>
-                        <tbody id="scheduleBody"></tbody>
-                    </table>
-                </div>
+                <div class="table-container"><table class="schedule-table"><thead><tr><th>날짜</th><th>직무 트랙</th><th>강사</th><th>교육 내용</th></tr></thead><tbody id="scheduleBody"></tbody></table></div>
             </section>
 
             <section id="showcase" class="content-section">
                 <h3 class="section-title">Gems 결과물 전시</h3>
-                <div class="grid" id="projectGrid">
-                    </div>
+                <div class="grid" id="projectGrid"></div>
             </section>
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 SUNJIN x TEAMSPARTA. All rights reserved.</p>
-    </footer>
-
     <script>
         const scheduleData = [
-            { date: "2/12, 2/20, 2/26", track: "영업/마케팅", tutor: "박윤재", content: "사료 영업 전략 최적화: 농장주 데이터(F001~F012) RAG 연동 및 제안서 초안 자동화" },
-            { date: "2/24, 2/26", track: "경영지원", tutor: "김안나", content: "행정 자동화 & 규정 응대: 인사/전결 규정 학습 Gems 제작 및 회의록 요약" },
-            { date: "2/24", track: "IT 직무", tutor: "신윤섭", content: "코딩 생산성: 레거시 코드 리뷰, API 명세서 및 기술 문서 자동화" },
-            { date: "2/25", track: "생산 품질", tutor: "전경아", content: "현장 효율화: 설비 매뉴얼 기반 장애 조치 봇 및 작업 일보 요약 정리" },
-            { date: "2/25", track: "R&D", tutor: "박윤재", content: "연구 가속화: 글로벌 기술 문헌 실시간 탐색 및 실험 데이터 해석 보조" }
+            { d: "2/12, 2/20, 2/26", t: "영업/마케팅", n: "박윤재", c: "농장주 데이터 RAG 연동 및 제안서 자동화" },
+            { d: "2/24, 2/26", t: "경영지원", n: "김안나", c: "행정 자동화 및 인사/전결 규정 학습 Gems" },
+            { d: "2/24", t: "IT 직무", n: "신윤섭", c: "레거시 코드 리뷰 및 기술 문서 자동 생성" },
+            { d: "2/25", t: "생산 품질", n: "전경아", c: "설비 매뉴얼 기반 장애 조치 및 작업 일보 요약" },
+            { d: "2/25", t: "R&D", n: "박윤재", c: "글로벌 기술 문헌 요약 및 실험 데이터 해석" }
         ];
 
-        // 결과물 예시 데이터 (실제 데이터는 시트 연동 가능)
-        const gemSamples = [
-            { cat: "영업", title: "농장주별 맞춤 영업 전략 봇", author: "영업 1팀", desc: "고객 데이터를 기반으로 니즈와 리스크를 분석하여 최적의 사료 패키지를 제안합니다.", link: "#" },
-            { cat: "경영", title: "사내 규정 Q&A 마스터", author: "인사팀", desc: "인사 규정집을 학습하여 경조사 휴가 및 증빙 서류 안내를 자동화합니다.", link: "#" },
-            { cat: "IT", title: "Tech Writer Bot", author: "IT센터", desc: "복잡한 소스 코드를 입력하면 자동으로 기술 문서(README)를 생성합니다.", link: "#" }
-        ];
+        // --- 구글 시트 CSV 링크 입력 ---
+        const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQpslH9p7FpUl9_ulUOUuMEMRfe-n-d-Jn2wE0AbVUjaiYr9KH6f9K8w9wL4OU5uXlfFiAPdcKOaUYV/pub?output=csv";
 
         function showSection(id) {
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('nav-' + id).classList.add('active');
-            window.scrollTo(0, 0);
         }
 
         document.getElementById('scheduleBody').innerHTML = scheduleData.map(s => `
-            <tr>
-                <td style="white-space:nowrap; color:#666; font-size:0.85rem;">${s.date}</td>
-                <td><strong style="color:var(--sj-red)">${s.track}</strong></td>
-                <td style="font-weight:600">${s.tutor}</td>
-                <td style="color:#444">${s.content}</td>
-            </tr>
+            <tr><td>${s.d}</td><td><strong style="color:var(--sj-red)">${s.t}</strong></td><td>${s.n}</td><td>${s.c}</td></tr>
         `).join('');
 
-        function renderGems() {
-            const grid = document.getElementById('projectGrid');
-            grid.innerHTML = gemSamples.map(g => `
-                <div class="card" onclick="location.href='${g.link}'">
-                    <div class="card-thumb">
-                        <div class="icon-box">💎</div>
-                    </div>
-                    <div class="card-body">
-                        <span class="tag">${g.cat}</span>
-                        <h4>${g.title}</h4>
-                        <p>${g.desc}</p>
-                        <div class="card-footer">
-                            <span class="author-info">제작: ${g.author}</span>
-                            <span class="view-link">자세히 보기 →</span>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
+        // 드라이브 링크를 썸네일 주소로 변환하는 함수
+        function getDriveThumbnail(url) {
+            if(!url || !url.includes('id=')) return 'https://via.placeholder.com/400x250?text=Sunjin+AI+Gems';
+            const id = url.split('id=')[1].split('&')[0];
+            return `https://drive.google.com/uc?export=view&id=${id}`;
         }
 
-        window.onload = renderGems;
+        async function loadGems() {
+            const grid = document.getElementById('projectGrid');
+            try {
+                // 시트 연동 전 테스트용 샘플 데이터
+                const samples = [
+                    ["영업", "농장주 분석 비서", "영업팀", "#"],
+                    ["경영", "HR 규정 마스터", "경영지원팀", "#"],
+                    ["IT", "코드 리뷰어", "IT팀", "#"]
+                ];
+                
+                let displayData = samples;
+                if (!SHEET_CSV_URL.startsWith("여기에")) {
+                    const res = await fetch(SHEET_CSV_URL);
+                    const text = await res.text();
+                    displayData = text.split('\n').slice(1).map(row => row.split(','));
+                }
+
+                grid.innerHTML = displayData.map(row => `
+                    <div class="card" onclick="window.open('${row[3]}')">
+                        <div class="card-thumb"><img src="${getDriveThumbnail(row[3])}" onerror="this.src='https://via.placeholder.com/400x225?text=Gems+Preview'"></div>
+                        <div class="card-body">
+                            <span class="tag">#${row[0]}</span>
+                            <h4>${row[1]}</h4>
+                            <div class="author">제작: ${row[2]}</div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch(e) { grid.innerHTML = "<p>데이터 로딩 실패</p>"; }
+        }
+
+        window.onload = loadGems;
     </script>
 </body>
 </html>
