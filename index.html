@@ -3,230 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>선진 산업특화 AI 리터러시 교육</title>
+    <title>[선진] 26년 전반기 직무별 리터러시 교육</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
     <style>
         :root {
             --sj-red: #E43315;    /* 선진 메인 레드 */
             --sj-green: #8DC63F;  /* 선진 포인트 그린 */
             --sj-orange: #F39800; /* 선진 포인트 오렌지 */
-            --sj-dark: #222;
             --sj-gray: #f8f9fa;
+            --sj-border: #eee;
         }
 
         * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family: 'Pretendard', sans-serif; background: #fff; color: var(--sj-dark); line-height: 1.6; }
+        body { font-family: 'Pretendard', sans-serif; background: #fff; color: #222; line-height: 1.6; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        .flex-between { display: flex; justify-content: space-between; align-items: center; }
-
-        /* Header & Nav */
-        header { padding: 15px 0; border-bottom: 4px solid var(--sj-red); background: #fff; position: sticky; top:0; z-index:100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .logo { font-size: 1.6rem; font-weight: 800; color: var(--sj-red); letter-spacing: -1px; }
-        .logo span { color: #555; font-weight: 400; font-size: 1.1rem; }
         
-        .nav-links { list-style: none; display: flex; gap: 10px; }
-        .nav-btn { background: none; border: none; padding: 10px 20px; font-weight: 600; color: #666; cursor: pointer; border-radius: 5px; transition: 0.3s; }
-        .nav-btn.active { color: var(--sj-red); background: #fff5f4; }
-        .nav-btn:hover { color: var(--sj-red); }
+        /* Header */
+        header { padding: 15px 0; border-bottom: 4px solid var(--sj-red); background: #fff; position: sticky; top:0; z-index:100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .flex-between { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.4rem; font-weight: 800; color: var(--sj-red); text-transform: lowercase; }
+        .nav-btn { background: none; border: 1px solid #ddd; padding: 8px 20px; font-weight: 600; color: #666; cursor: pointer; border-radius: 20px; transition: 0.3s; margin-left: 10px; }
+        .nav-btn.active { background: var(--sj-red); color: #fff; border-color: var(--sj-red); }
 
-        /* Section Visibility */
-        .content-section { display: none; padding: 60px 0; animation: fadeIn 0.4s ease; }
+        /* Hero Section */
+        .hero { background: var(--sj-gray); padding: 60px 0; text-align: center; border-bottom: 1px solid #eee; }
+        .hero h1 { font-size: 2.4rem; color: var(--sj-red); letter-spacing: -1.2px; margin-bottom: 15px; font-weight: 800; }
+        .hero p { font-size: 1.1rem; color: #555; margin-bottom: 30px; }
+        
+        .btn-group { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+        .link-btn { padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; }
+        .btn-survey-pre { background: var(--sj-green); color: #fff; }
+        .btn-survey-post { background: var(--sj-orange); color: #fff; }
+        .link-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+        /* Content Sections */
+        .content-section { display: none; padding: 50px 0; animation: fadeIn 0.4s ease; }
         .content-section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Hero */
-        .hero-mini { text-align: center; margin-bottom: 50px; }
-        .hero-mini h2 { font-size: 3rem; margin: 20px 0; color: var(--sj-dark); letter-spacing: -1.5px; }
-        .badge { background: var(--sj-green); color: #fff; padding: 6px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; display: inline-block; }
+        /* Integrated Info Box */
+        .section-title { font-size: 1.7rem; border-left: 6px solid var(--sj-green); padding-left: 15px; margin-bottom: 30px; font-weight: 800; }
+        .info-box { background: #fff; border: 1px solid var(--sj-border); border-radius: 15px; padding: 30px; margin-bottom: 40px; }
+        .info-box h4 { color: var(--sj-red); margin-bottom: 15px; font-size: 1.25rem; font-weight: 700; }
+        .info-box p { font-size: 1rem; margin-bottom: 10px; color: #444; }
+        
+        /* Schedule Table */
+        .table-container { overflow-x: auto; border: 1px solid var(--sj-border); border-radius: 12px; }
+        .schedule-table { width: 100%; border-collapse: collapse; min-width: 750px; }
+        .schedule-table th { background: #fdfdfd; padding: 18px; text-align: left; border-bottom: 2px solid var(--sj-border); font-size: 0.9rem; color: #666; }
+        .schedule-table td { padding: 18px; border-bottom: 1px solid var(--sj-border); font-size: 0.95rem; vertical-align: top; }
 
-        /* Info Cards */
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
-        .info-card { padding: 30px; border-radius: 15px; background: var(--sj-gray); border-top: 5px solid var(--sj-orange); }
-        .info-card h4 { font-size: 1.3rem; margin-bottom: 15px; color: var(--sj-red); }
-        .info-card ul { padding-left: 20px; }
-        .info-card li { margin-bottom: 10px; }
-
-        /* Table */
-        .section-title { font-size: 1.8rem; border-left: 6px solid var(--sj-green); padding-left: 15px; margin-bottom: 30px; font-weight: 800; }
-        .table-container { overflow-x: auto; border: 1px solid #eee; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
-        .schedule-table { width: 100%; border-collapse: collapse; background: #fff; }
-        .schedule-table th { background: #fdfdfd; padding: 18px; text-align: left; border-bottom: 2px solid #eee; font-weight: 700; color: #444; }
-        .schedule-table td { padding: 18px; border-bottom: 1px solid #eee; font-size: 0.95rem; }
-        .track-badge { background: #eee; padding: 3px 10px; border-radius: 4px; font-size: 0.85rem; font-weight: 600; }
-
-        /* Showcase Grid */
+        /* 보완된 Showcase 카드 디자인 */
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
-        .card { border: 1px solid #eee; border-radius: 20px; padding: 30px; transition: all 0.3s; cursor: pointer; background: #fff; }
-        .card:hover { border-color: var(--sj-red); transform: translateY(-10px); box-shadow: 0 15px 35px rgba(228, 51, 21, 0.1); }
-        .card .tag { font-size: 0.85rem; color: var(--sj-green); font-weight: 800; margin-bottom: 15px; display: block; }
-        .card h4 { margin-bottom: 15px; font-size: 1.4rem; letter-spacing: -0.5px; }
-        .card p { font-size: 1rem; color: #666; line-height: 1.6; }
-        .card-footer { margin-top: 25px; padding-top: 20px; border-top: 1px solid #f4f4f4; display: flex; justify-content: space-between; align-items: center; }
+        .card { border: 1px solid var(--sj-border); border-radius: 20px; overflow: hidden; background: #fff; transition: 0.3s; cursor: pointer; display: flex; flex-direction: column; }
+        .card:hover { border-color: var(--sj-red); transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
+        
+        /* 카드 상단 미리보기 영역 (썸네일) */
+        .card-thumb { height: 180px; background: #eee; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .card-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .card-thumb .icon-box { font-size: 3rem; opacity: 0.3; }
+        
+        .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .tag { font-size: 0.8rem; color: var(--sj-green); font-weight: 800; margin-bottom: 12px; display: inline-block; padding: 2px 10px; border: 1px solid var(--sj-green); border-radius: 4px; width: fit-content; }
+        .card h4 { font-size: 1.25rem; margin-bottom: 12px; font-weight: 700; color: #111; line-height: 1.3; }
+        .card p { font-size: 0.95rem; color: #666; margin-bottom: 20px; flex-grow: 1; }
+        .card-footer { border-top: 1px solid #f4f4f4; padding-top: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .author-info { font-size: 0.85rem; color: #999; font-weight: 500; }
+        .view-link { font-size: 0.85rem; color: var(--sj-red); font-weight: 700; }
 
-        /* Filters */
-        .filter-group { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
-        .filter-btn { padding: 8px 20px; border-radius: 25px; border: 1px solid #ddd; background: #fff; cursor: pointer; font-size: 0.9rem; font-weight: 600; transition: 0.3s; }
-        .filter-btn.active { background: var(--sj-red); color:#fff; border-color: var(--sj-red); }
-
-        footer { padding: 60px 0; text-align: center; color: #bbb; border-top: 1px solid #eee; margin-top: 80px; font-size: 0.9rem; }
-
-        @media (max-width: 768px) {
-            .info-grid { grid-template-columns: 1fr; }
-            .hero-mini h2 { font-size: 2.2rem; }
-        }
+        footer { padding: 60px 0; text-align: center; color: #bbb; font-size: 0.85rem; border-top: 1px solid var(--sj-border); margin-top: 80px; }
     </style>
 </head>
 <body>
     <header>
         <div class="container flex-between">
-            <h1 class="logo">sunjin <span>AI Literacy</span></h1>
+            <div class="logo">sunjin</div>
             <nav>
-                <ul class="nav-links">
-                    <li><button onclick="showSection('intro')" id="btn-intro" class="nav-btn active">교육소개</button></li>
-                    <li><button onclick="showSection('schedule')" id="btn-schedule" class="nav-btn">상세일정</button></li>
-                    <li><button onclick="showSection('showcase')" id="btn-showcase" class="nav-btn">Gems 전시회</button></li>
-                </ul>
+                <button onclick="showSection('info')" id="nav-info" class="nav-btn active">교육소개 및 일정</button>
+                <button onclick="showSection('showcase')" id="nav-showcase" class="nav-btn">Gems 전시회</button>
             </nav>
         </div>
     </header>
 
-    <main class="container">
-        <section id="intro" class="content-section active">
-            <div class="hero-mini">
-                <span class="badge">선진 산업특화 생성형 AI 교육</span>
-                <h2>Gemini / Gems 활용법 [cite: 3]</h2>
-                <p>선진 산업에 최적화된 AI 리터러시를 통해 실무 생산성을 혁신합니다. [cite: 3]</p>
-            </div>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h4>교육 핵심 목표 [cite: 10]</h4>
-                    <ul>
-                        <li>문서 요약 표준 확립 (결론-근거-기대효과) [cite: 12, 13]</li>
-                        <li>참가자 전원 '직무 맞춤 Gems' 1개 완성 [cite: 15]</li>
-                        <li>Google Workspace 내 AI 기능 실질적 활용 [cite: 22]</li>
-                    </ul>
-                </div>
-                <div class="info-card">
-                    <h4>교육 운영 방식 </h4>
-                    <p>이론 강의와 공통 실습(2H) 후 소회의실 기반의 분반 심화 멘토링(2H)을 통해 산출물을 고도화합니다. </p>
-                    <p style="margin-top:10px;"><strong>교육 환경:</strong> Google Meet 기반 온라인 라이브 [cite: 25]</p>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>[선진] 26년 전반기 직무별 리터러시 교육</h1>
+                <p>생성형 AI 리터러시 진단부터 직무 맞춤 Gems 제작까지</p>
+                <div class="btn-group">
+                    <a href="https://forms.gle/XUMqeauStPJPCXTC9" target="_blank" class="link-btn btn-survey-pre">📝 사전 설문 참여</a>
+                    <a href="https://forms.gle/VTq2F5H5yksgycs39" target="_blank" class="link-btn btn-survey-post">📝 사후 설문 참여</a>
                 </div>
             </div>
         </section>
 
-        <section id="schedule" class="content-section">
-            <h3 class="section-title">교육 상세일정</h3>
-            <div class="table-container">
-                <table class="schedule-table">
-                    <thead>
-                        <tr>
-                            <th>날짜</th>
-                            <th>직무 트랙</th>
-                            <th>강사</th>
-                            <th>핵심 교육 내용</th>
-                        </tr>
-                    </thead>
-                    <tbody id="scheduleBody">
-                        </tbody>
-                </table>
-            </div>
-        </section>
+        <div class="container">
+            <section id="info" class="content-section active">
+                <div class="info-box">
+                    <h4>핵심 목표 및 운영</h4>
+                    <p>• <strong>문서 요약 표준 확립:</strong> 결재 문서 핵심 요약 프롬프트 최적화</p>
+                    <p>• <strong>1인 1 Gems 완성:</strong> 전사 활용 가능한 직무별 맞춤형 비서 제작</p>
+                    <p>• <strong>운영 방식:</strong> 100% 온라인 라이브 (이론/실습 2H + 심화 멘토링 2H)</p>
+                    <p>• <strong>기술 지원:</strong> 메인 강사 1인 및 소회의실 전담 기술 튜터 2인 배치</p>
+                </div>
 
-        <section id="showcase" class="content-section">
-            <div class="flex-between" style="align-items: flex-end;">
-                <div>
-                    <h3 class="section-title">Gems 결과물 전시</h3>
-                    <div class="filter-group">
-                        <button class="filter-btn active" onclick="filterGems('all')">전체</button>
-                        <button class="filter-btn" onclick="filterGems('영업')">영업/마케팅</button>
-                        <button class="filter-btn" onclick="filterGems('경영')">경영지원</button>
-                        <button class="filter-btn" onclick="filterGems('IT')">IT 직무</button>
-                        <button class="filter-btn" onclick="filterGems('RD')">R&D</button>
+                <h3 class="section-title">상세 교육일정</h3>
+                <div class="table-container">
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>날짜</th>
+                                <th>직무 트랙</th>
+                                <th>강사</th>
+                                <th>핵심 교육 내용</th>
+                            </tr>
+                        </thead>
+                        <tbody id="scheduleBody"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="showcase" class="content-section">
+                <h3 class="section-title">Gems 결과물 전시</h3>
+                <div class="grid" id="projectGrid">
                     </div>
-                </div>
-            </div>
-            <div class="grid" id="projectGrid">
-                </div>
-        </section>
+            </section>
+        </div>
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2026 SUNJIN x TEAMSPARTA. All rights reserved.</p>
-        </div>
+        <p>&copy; 2026 SUNJIN x TEAMSPARTA. All rights reserved.</p>
     </footer>
 
     <script>
-        // 1. 교육 상세 일정 데이터
-        const fullSchedule = [
-            { date: "2/12, 2/20, 2/26", track: "영업/마케팅", tutor: "박윤재", content: "사료 영업 전략 최적화: 농장주 데이터(F001~F012) RAG 연동 및 제안서 초안 작성" },
-            { date: "2/24, 2/26", track: "경영지원", tutor: "김안나", content: "행정 자동화 & 규정 응대: 인사/전결 규정 학습 Gems 제작 및 회의록 Action Item 추출" },
-            { date: "2/24", track: "IT 직무", tutor: "신윤섭", content: "코딩 및 문서화 생산성: 레거시 코드 리뷰, API 명세서 및 기술 문서 자동 생성" },
-            { date: "2/25", track: "생산 품질", tutor: "전경아", content: "현장 이슈 리포팅: 설비 매뉴얼 기반 장애 조치 봇 및 작업 일보 요약 정리" },
-            { date: "2/25", track: "R&D", tutor: "박윤재", content: "연구 가속화: 글로벌 기술 문헌/특허 실시간 요약 및 실험 데이터(CSV) 해석 보조" }
+        const scheduleData = [
+            { date: "2/12, 2/20, 2/26", track: "영업/마케팅", tutor: "박윤재", content: "사료 영업 전략 최적화: 농장주 데이터(F001~F012) RAG 연동 및 제안서 초안 자동화" },
+            { date: "2/24, 2/26", track: "경영지원", tutor: "김안나", content: "행정 자동화 & 규정 응대: 인사/전결 규정 학습 Gems 제작 및 회의록 요약" },
+            { date: "2/24", track: "IT 직무", tutor: "신윤섭", content: "코딩 생산성: 레거시 코드 리뷰, API 명세서 및 기술 문서 자동화" },
+            { date: "2/25", track: "생산 품질", tutor: "전경아", content: "현장 효율화: 설비 매뉴얼 기반 장애 조치 봇 및 작업 일보 요약 정리" },
+            { date: "2/25", track: "R&D", tutor: "박윤재", content: "연구 가속화: 글로벌 기술 문헌 실시간 탐색 및 실험 데이터 해석 보조" }
         ];
 
-        // 2. 결과물 예시 데이터
+        // 결과물 예시 데이터 (실제 데이터는 시트 연동 가능)
         const gemSamples = [
-            { id: 1, category: "영업", title: "농장주별 맞춤 영업 전략 봇", desc: "농장주 프로필 및 과거 질병 이력을 분석하여 타겟 고객별 맞춤 제안 상품을 추천합니다.", author: "영업 1분반" },
-            { id: 2, category: "경영", title: "HR 규정 Q&A 마스터", desc: "사내 복리후생 및 휴가 규정을 즉시 답변해주는 인사/총무 전용 지식 비서입니다.", author: "경영지원 2분반" },
-            { id: 3, category: "IT", title: "API 명세서 자동 생성 봇", desc: "소스 코드를 분석하여 README.md 및 API 가이드를 표준화된 문서로 생성합니다.", author: "IT팀 1분반" },
-            { id: 4, category: "RD", title: "글로벌 기술 트렌드 요약기", desc: "축산 관련 외신 및 논문을 선진 보고 양식(결론-근거)에 맞춰 국문 요약합니다.", author: "R&D 연구소" }
+            { cat: "영업", title: "농장주별 맞춤 영업 전략 봇", author: "영업 1팀", desc: "고객 데이터를 기반으로 니즈와 리스크를 분석하여 최적의 사료 패키지를 제안합니다.", link: "#" },
+            { cat: "경영", title: "사내 규정 Q&A 마스터", author: "인사팀", desc: "인사 규정집을 학습하여 경조사 휴가 및 증빙 서류 안내를 자동화합니다.", link: "#" },
+            { cat: "IT", title: "Tech Writer Bot", author: "IT센터", desc: "복잡한 소스 코드를 입력하면 자동으로 기술 문서(README)를 생성합니다.", link: "#" }
         ];
 
-        // 탭 전환 함수
-        function showSection(sectionId) {
-            document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
-            
-            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('btn-' + sectionId).classList.add('active');
-            
+        function showSection(id) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('nav-' + id).classList.add('active');
             window.scrollTo(0, 0);
         }
 
-        // 일정 렌더링
-        function renderSchedule() {
-            const scheduleBody = document.getElementById('scheduleBody');
-            scheduleBody.innerHTML = fullSchedule.map(s => `
-                <tr>
-                    <td style="white-space:nowrap; color:#888;">${s.date}</td>
-                    <td><span class="track-badge">${s.track}</span></td>
-                    <td style="font-weight:600;">${s.tutor}</td>
-                    <td>${s.content}</td>
-                </tr>
-            `).join('');
-        }
+        document.getElementById('scheduleBody').innerHTML = scheduleData.map(s => `
+            <tr>
+                <td style="white-space:nowrap; color:#666; font-size:0.85rem;">${s.date}</td>
+                <td><strong style="color:var(--sj-red)">${s.track}</strong></td>
+                <td style="font-weight:600">${s.tutor}</td>
+                <td style="color:#444">${s.content}</td>
+            </tr>
+        `).join('');
 
-        // Gems 필터 및 렌더링
-        function filterGems(category) {
+        function renderGems() {
             const grid = document.getElementById('projectGrid');
-            
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                const btnCategory = btn.innerText === '전체' ? 'all' : (btn.innerText === 'IT 직무' ? 'IT' : (btn.innerText === 'R&D' ? 'RD' : btn.innerText));
-                btn.classList.toggle('active', (category === 'all' && btn.innerText === '전체') || btn.innerText.includes(category));
-            });
-
-            const filtered = category === 'all' ? gemSamples : gemSamples.filter(g => g.category === category);
-            
-            grid.innerHTML = filtered.map(g => `
-                <div class="card">
-                    <span class="tag">#${g.category}</span>
-                    <h4>${g.title}</h4>
-                    <p>${g.desc}</p>
-                    <div class="card-footer">
-                        <span style="font-size:0.85rem; color:#999;">제작: ${g.author}</span>
-                        <span style="color:var(--sj-red); font-weight:800; font-size:0.9rem;">상세보기 →</span>
+            grid.innerHTML = gemSamples.map(g => `
+                <div class="card" onclick="location.href='${g.link}'">
+                    <div class="card-thumb">
+                        <div class="icon-box">💎</div>
+                    </div>
+                    <div class="card-body">
+                        <span class="tag">${g.cat}</span>
+                        <h4>${g.title}</h4>
+                        <p>${g.desc}</p>
+                        <div class="card-footer">
+                            <span class="author-info">제작: ${g.author}</span>
+                            <span class="view-link">자세히 보기 →</span>
+                        </div>
                     </div>
                 </div>
             `).join('');
         }
 
-        // 초기화
-        window.onload = () => {
-            renderSchedule();
-            filterGems('all');
-        };
+        window.onload = renderGems;
     </script>
 </body>
 </html>
