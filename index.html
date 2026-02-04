@@ -4,8 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>선진 산업특화 AI 리터러시 교육</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <style>
+        :root {
+            --sj-red: #E43315;    /* 선진 메인 레드 */
+            --sj-green: #8DC63F;  /* 선진 포인트 그린 */
+            --sj-orange: #F39800; /* 선진 포인트 오렌지 */
+            --sj-dark: #222;
+            --sj-gray: #f8f9fa;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family: 'Pretendard', sans-serif; background: #fff; color: var(--sj-dark); line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .flex-between { display: flex; justify-content: space-between; align-items: center; }
+
+        /* Header & Nav */
+        header { padding: 15px 0; border-bottom: 4px solid var(--sj-red); background: #fff; position: sticky; top:0; z-index:100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { font-size: 1.6rem; font-weight: 800; color: var(--sj-red); letter-spacing: -1px; }
+        .logo span { color: #555; font-weight: 400; font-size: 1.1rem; }
+        
+        .nav-links { list-style: none; display: flex; gap: 10px; }
+        .nav-btn { background: none; border: none; padding: 10px 20px; font-weight: 600; color: #666; cursor: pointer; border-radius: 5px; transition: 0.3s; }
+        .nav-btn.active { color: var(--sj-red); background: #fff5f4; }
+        .nav-btn:hover { color: var(--sj-red); }
+
+        /* Section Visibility */
+        .content-section { display: none; padding: 60px 0; animation: fadeIn 0.4s ease; }
+        .content-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Hero */
+        .hero-mini { text-align: center; margin-bottom: 50px; }
+        .hero-mini h2 { font-size: 3rem; margin: 20px 0; color: var(--sj-dark); letter-spacing: -1.5px; }
+        .badge { background: var(--sj-green); color: #fff; padding: 6px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; display: inline-block; }
+
+        /* Info Cards */
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
+        .info-card { padding: 30px; border-radius: 15px; background: var(--sj-gray); border-top: 5px solid var(--sj-orange); }
+        .info-card h4 { font-size: 1.3rem; margin-bottom: 15px; color: var(--sj-red); }
+        .info-card ul { padding-left: 20px; }
+        .info-card li { margin-bottom: 10px; }
+
+        /* Table */
+        .section-title { font-size: 1.8rem; border-left: 6px solid var(--sj-green); padding-left: 15px; margin-bottom: 30px; font-weight: 800; }
+        .table-container { overflow-x: auto; border: 1px solid #eee; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+        .schedule-table { width: 100%; border-collapse: collapse; background: #fff; }
+        .schedule-table th { background: #fdfdfd; padding: 18px; text-align: left; border-bottom: 2px solid #eee; font-weight: 700; color: #444; }
+        .schedule-table td { padding: 18px; border-bottom: 1px solid #eee; font-size: 0.95rem; }
+        .track-badge { background: #eee; padding: 3px 10px; border-radius: 4px; font-size: 0.85rem; font-weight: 600; }
+
+        /* Showcase Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+        .card { border: 1px solid #eee; border-radius: 20px; padding: 30px; transition: all 0.3s; cursor: pointer; background: #fff; }
+        .card:hover { border-color: var(--sj-red); transform: translateY(-10px); box-shadow: 0 15px 35px rgba(228, 51, 21, 0.1); }
+        .card .tag { font-size: 0.85rem; color: var(--sj-green); font-weight: 800; margin-bottom: 15px; display: block; }
+        .card h4 { margin-bottom: 15px; font-size: 1.4rem; letter-spacing: -0.5px; }
+        .card p { font-size: 1rem; color: #666; line-height: 1.6; }
+        .card-footer { margin-top: 25px; padding-top: 20px; border-top: 1px solid #f4f4f4; display: flex; justify-content: space-between; align-items: center; }
+
+        /* Filters */
+        .filter-group { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
+        .filter-btn { padding: 8px 20px; border-radius: 25px; border: 1px solid #ddd; background: #fff; cursor: pointer; font-size: 0.9rem; font-weight: 600; transition: 0.3s; }
+        .filter-btn.active { background: var(--sj-red); color:#fff; border-color: var(--sj-red); }
+
+        footer { padding: 60px 0; text-align: center; color: #bbb; border-top: 1px solid #eee; margin-top: 80px; font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            .info-grid { grid-template-columns: 1fr; }
+            .hero-mini h2 { font-size: 2.2rem; }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -13,9 +82,9 @@
             <h1 class="logo">sunjin <span>AI Literacy</span></h1>
             <nav>
                 <ul class="nav-links">
-                    <li><button onclick="showSection('intro')" class="nav-btn active">교육소개</button></li>
-                    <li><button onclick="showSection('schedule')" class="nav-btn">상세일정</button></li>
-                    <li><button onclick="showSection('showcase')" class="nav-btn">Gems 전시회</button></li>
+                    <li><button onclick="showSection('intro')" id="btn-intro" class="nav-btn active">교육소개</button></li>
+                    <li><button onclick="showSection('schedule')" id="btn-schedule" class="nav-btn">상세일정</button></li>
+                    <li><button onclick="showSection('showcase')" id="btn-showcase" class="nav-btn">Gems 전시회</button></li>
                 </ul>
             </nav>
         </div>
@@ -24,9 +93,9 @@
     <main class="container">
         <section id="intro" class="content-section active">
             <div class="hero-mini">
-                <span class="badge">2026 선진 x 팀스파르타</span>
-                <h2>Gemini / Gems 활용법</h2>
-                <p>선진 산업에 특화된 AI 기술로 실무 생산성을 혁신하는 리터러시 교육 과정입니다[cite: 3].</p>
+                <span class="badge">선진 산업특화 생성형 AI 교육</span>
+                <h2>Gemini / Gems 활용법 [cite: 3]</h2>
+                <p>선진 산업에 최적화된 AI 리터러시를 통해 실무 생산성을 혁신합니다. [cite: 3]</p>
             </div>
             <div class="info-grid">
                 <div class="info-card">
@@ -38,9 +107,9 @@
                     </ul>
                 </div>
                 <div class="info-card">
-                    <h4>운영 방식</h4>
-                    <p>이론 강의 및 공통 실습(2H) 후 소회의실 기반의 분반 심화 멘토링(2H)이 진행됩니다[cite: 34].</p>
-                    <p>장소: Google Meet 기반 온라인 라이브 [cite: 25]</p>
+                    <h4>교육 운영 방식 </h4>
+                    <p>이론 강의와 공통 실습(2H) 후 소회의실 기반의 분반 심화 멘토링(2H)을 통해 산출물을 고도화합니다. </p>
+                    <p style="margin-top:10px;"><strong>교육 환경:</strong> Google Meet 기반 온라인 라이브 [cite: 25]</p>
                 </div>
             </div>
         </section>
@@ -64,14 +133,16 @@
         </section>
 
         <section id="showcase" class="content-section">
-            <div class="flex-between mb-4">
-                <h3 class="section-title">Gems 결과물 전시</h3>
-                <div class="filter-group">
-                    <button class="filter-btn active" onclick="filterGems('all')">전체</button>
-                    <button class="filter-btn" onclick="filterGems('영업')">영업/마케팅</button>
-                    <button class="filter-btn" onclick="filterGems('경영')">경영지원</button>
-                    <button class="filter-btn" onclick="filterGems('IT')">IT 직무</button>
-                    <button class="filter-btn" onclick="filterGems('RD')">R&D</button>
+            <div class="flex-between" style="align-items: flex-end;">
+                <div>
+                    <h3 class="section-title">Gems 결과물 전시</h3>
+                    <div class="filter-group">
+                        <button class="filter-btn active" onclick="filterGems('all')">전체</button>
+                        <button class="filter-btn" onclick="filterGems('영업')">영업/마케팅</button>
+                        <button class="filter-btn" onclick="filterGems('경영')">경영지원</button>
+                        <button class="filter-btn" onclick="filterGems('IT')">IT 직무</button>
+                        <button class="filter-btn" onclick="filterGems('RD')">R&D</button>
+                    </div>
                 </div>
             </div>
             <div class="grid" id="projectGrid">
@@ -81,10 +152,81 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 SUNJIN x TEAMSPARTA. All rights reserved[cite: 5].</p>
+            <p>&copy; 2026 SUNJIN x TEAMSPARTA. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // 1. 교육 상세 일정 데이터
+        const fullSchedule = [
+            { date: "2/12, 2/20, 2/26", track: "영업/마케팅", tutor: "박윤재", content: "사료 영업 전략 최적화: 농장주 데이터(F001~F012) RAG 연동 및 제안서 초안 작성" },
+            { date: "2/24, 2/26", track: "경영지원", tutor: "김안나", content: "행정 자동화 & 규정 응대: 인사/전결 규정 학습 Gems 제작 및 회의록 Action Item 추출" },
+            { date: "2/24", track: "IT 직무", tutor: "신윤섭", content: "코딩 및 문서화 생산성: 레거시 코드 리뷰, API 명세서 및 기술 문서 자동 생성" },
+            { date: "2/25", track: "생산 품질", tutor: "전경아", content: "현장 이슈 리포팅: 설비 매뉴얼 기반 장애 조치 봇 및 작업 일보 요약 정리" },
+            { date: "2/25", track: "R&D", tutor: "박윤재", content: "연구 가속화: 글로벌 기술 문헌/특허 실시간 요약 및 실험 데이터(CSV) 해석 보조" }
+        ];
+
+        // 2. 결과물 예시 데이터
+        const gemSamples = [
+            { id: 1, category: "영업", title: "농장주별 맞춤 영업 전략 봇", desc: "농장주 프로필 및 과거 질병 이력을 분석하여 타겟 고객별 맞춤 제안 상품을 추천합니다.", author: "영업 1분반" },
+            { id: 2, category: "경영", title: "HR 규정 Q&A 마스터", desc: "사내 복리후생 및 휴가 규정을 즉시 답변해주는 인사/총무 전용 지식 비서입니다.", author: "경영지원 2분반" },
+            { id: 3, category: "IT", title: "API 명세서 자동 생성 봇", desc: "소스 코드를 분석하여 README.md 및 API 가이드를 표준화된 문서로 생성합니다.", author: "IT팀 1분반" },
+            { id: 4, category: "RD", title: "글로벌 기술 트렌드 요약기", desc: "축산 관련 외신 및 논문을 선진 보고 양식(결론-근거)에 맞춰 국문 요약합니다.", author: "R&D 연구소" }
+        ];
+
+        // 탭 전환 함수
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + sectionId).classList.add('active');
+            
+            window.scrollTo(0, 0);
+        }
+
+        // 일정 렌더링
+        function renderSchedule() {
+            const scheduleBody = document.getElementById('scheduleBody');
+            scheduleBody.innerHTML = fullSchedule.map(s => `
+                <tr>
+                    <td style="white-space:nowrap; color:#888;">${s.date}</td>
+                    <td><span class="track-badge">${s.track}</span></td>
+                    <td style="font-weight:600;">${s.tutor}</td>
+                    <td>${s.content}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Gems 필터 및 렌더링
+        function filterGems(category) {
+            const grid = document.getElementById('projectGrid');
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                const btnCategory = btn.innerText === '전체' ? 'all' : (btn.innerText === 'IT 직무' ? 'IT' : (btn.innerText === 'R&D' ? 'RD' : btn.innerText));
+                btn.classList.toggle('active', (category === 'all' && btn.innerText === '전체') || btn.innerText.includes(category));
+            });
+
+            const filtered = category === 'all' ? gemSamples : gemSamples.filter(g => g.category === category);
+            
+            grid.innerHTML = filtered.map(g => `
+                <div class="card">
+                    <span class="tag">#${g.category}</span>
+                    <h4>${g.title}</h4>
+                    <p>${g.desc}</p>
+                    <div class="card-footer">
+                        <span style="font-size:0.85rem; color:#999;">제작: ${g.author}</span>
+                        <span style="color:var(--sj-red); font-weight:800; font-size:0.9rem;">상세보기 →</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 초기화
+        window.onload = () => {
+            renderSchedule();
+            filterGems('all');
+        };
+    </script>
 </body>
 </html>
