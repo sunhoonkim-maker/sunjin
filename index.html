@@ -23,7 +23,7 @@
         .nav-btn.active { background: var(--sj-red); color: var(--white); border-color: var(--sj-red); box-shadow: 0 4px 15px rgba(228, 51, 21, 0.3); }
 
         .hero-dashboard { background: linear-gradient(135deg, #fff 0%, #fff5f4 100%); padding: 60px 0; border-radius: 0 0 50px 50px; text-align: center; margin-bottom: 40px; }
-        .hero-dashboard h1 { font-size: 2.3rem; color: #111; margin-bottom: 12px; font-weight: 900; }
+        .hero-dashboard h1 { font-size: 2.3rem; color: #111; margin-bottom: 12px; font-weight: 900; letter-spacing: -1.5px; }
         .btn-group { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 25px; }
         .link-btn { padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: 800; transition: 0.3s; color: #fff; font-size: 1.1rem; box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
         .btn-pre { background: var(--sj-green); }
@@ -33,56 +33,60 @@
         .content-section.active { display: block; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .guide-grid { display: grid; grid-template-columns: 2fr 1.2fr; gap: 24px; margin-bottom: 40px; }
+        /* 메인 레이아웃 가로 정렬 */
+        .main-layout { display: grid; grid-template-columns: 1.8fr 1.2fr; gap: 24px; margin-bottom: 40px; }
         .card-panel { background: var(--white); border-radius: 24px; padding: 32px; box-shadow: var(--shadow); }
         .panel-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
         .panel-title::before { content: ''; width: 6px; height: 24px; background: var(--sj-green); border-radius: 3px; }
-        
-        .custom-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
-        .custom-table tr td { background: #fcfcfc; padding: 20px 15px; border-top: 1px solid #f4f4f4; border-bottom: 1px solid #f4f4f4; vertical-align: middle; }
-        .custom-table tr td:first-child { border-left: 1px solid #f4f4f4; border-radius: 12px 0 0 12px; width: 150px; font-weight: 700; color: #666; }
-        .custom-table tr td:last-child { border-right: 1px solid #f4f4f4; border-radius: 0 12px 12px 0; }
-        .track-tag { display: inline-block; padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 800; color: var(--sj-red); background: #fff1f0; }
 
-        /* 교육 자료 버튼 디자인 */
-        .material-button { 
+        /* 상세 교육 일정 리스트 스타일 (이미지 기반 개편) */
+        .schedule-list { list-style: none; }
+        .schedule-item { 
             display: flex; 
-            align-items: center;
-            justify-content: space-between;
-            width: 100%; 
-            padding: 18px 24px; 
-            margin-bottom: 12px; 
-            background: #fff; 
-            border: 2px solid #f0f0f0; 
-            border-radius: 16px; 
-            text-decoration: none; 
-            color: #333; 
-            transition: 0.3s; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 20px 0; 
+            border-bottom: 1px solid #f0f0f0; 
+        }
+        .schedule-item:last-child { border-bottom: none; }
+        .sch-date { width: 100px; font-size: 1.2rem; font-weight: 800; color: var(--sj-red); }
+        .sch-content { flex-grow: 1; padding: 0 20px; }
+        .sch-title { font-size: 1.05rem; font-weight: 700; color: #333; margin-bottom: 4px; }
+        .sch-desc { font-size: 0.9rem; color: #777; line-height: 1.4; }
+        .sch-time { 
+            background: var(--sj-orange); 
+            color: #fff; 
+            padding: 6px 16px; 
+            border-radius: 8px; 
+            font-size: 0.9rem; 
+            font-weight: 700; 
+            white-space: nowrap;
+        }
+
+        /* 교육 자료 및 실습 버튼 */
+        .material-button { 
+            display: flex; align-items: center; justify-content: space-between; 
+            width: 100%; padding: 20px; margin-bottom: 16px; 
+            background: #fff; border: 2px solid #f0f0f0; border-radius: 16px; 
+            text-decoration: none; color: #333; transition: 0.3s; 
         }
         .material-button:hover { 
-            border-color: var(--sj-green); 
-            background: #fafff0; 
-            transform: translateY(-3px); 
-            box-shadow: 0 10px 20px rgba(141, 198, 63, 0.15); 
+            border-color: var(--sj-green); background: #fafff0; 
+            transform: translateY(-3px); box-shadow: 0 8px 20px rgba(141, 198, 63, 0.15); 
         }
-        .material-button .info b { font-size: 1.05rem; display: block; color: #111; }
-        .material-button .info span { font-size: 0.85rem; color: #888; }
-        .material-button .go-icon { font-size: 1.2rem; color: var(--sj-green); font-weight: 900; }
+        .material-button b { font-size: 1.1rem; color: #111; }
+        .material-button span { font-size: 0.85rem; color: #888; display: block; }
+        .go-icon { font-size: 1.2rem; color: var(--sj-green); font-weight: 900; }
 
-        /* 전시회 관련 스타일 */
+        /* 전시회 갤러리 */
         .filter-group { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 25px; }
-        .filter-btn { padding: 8px 18px; border-radius: 20px; border: 1px solid #ddd; background: #fff; color: #666; font-weight: 600; cursor: pointer; transition: 0.2s; }
+        .filter-btn { padding: 8px 18px; border-radius: 20px; border: 1px solid #ddd; background: #fff; cursor: pointer; font-weight: 600; transition: 0.2s; }
         .filter-btn.active { background: var(--sj-green); color: #fff; border-color: var(--sj-green); }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
         .project-card { background: var(--white); border-radius: 24px; overflow: hidden; border: 1px solid #eee; transition: 0.4s; cursor: pointer; }
         .project-card:hover { transform: translateY(-10px); border-color: var(--sj-red); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-        .thumb { height: 180px; background: #eee; overflow: hidden; }
+        .thumb { height: 180px; background: #eee; }
         .thumb img { width: 100%; height: 100%; object-fit: cover; }
-        .body { padding: 24px; }
-        .body .cat { font-size: 0.75rem; color: var(--sj-green); font-weight: 800; }
-        .body h4 { font-size: 1.2rem; margin: 8px 0; font-weight: 800; }
-        .foot { border-top: 1px solid #f4f4f4; padding-top: 15px; font-size: 0.85rem; color: #999; display: flex; justify-content: space-between; }
 
         footer { padding: 60px 0; text-align: center; color: #bbb; border-top: 1px solid #ddd; }
     </style>
@@ -111,41 +115,35 @@
 
     <main class="container">
         <section id="learning" class="content-section active">
-            <div class="guide-grid">
+            <div class="main-layout">
                 <div class="card-panel">
                     <h3 class="panel-title">상세 교육일정</h3>
-                    <table class="custom-table">
-                        <tbody id="scheduleBody"></tbody>
-                    </table>
+                    <ul class="schedule-list" id="scheduleList">
+                        </ul>
                 </div>
+
                 <div class="card-panel">
                     <h3 class="panel-title">교육 자료 및 실습 페이지</h3>
-                    
                     <a href="https://padlet.com/biz14/sunjin_sales" target="_blank" class="material-button">
-                        <div class="info"><b>영업 / 마케팅</b><span>교안 및 실습 데이터 링크</span></div>
+                        <div><b>영업 / 마케팅</b><span>교안 및 실습 데이터 링크</span></div>
                         <div class="go-icon">→</div>
                     </a>
-                    
                     <a href="https://padlet.com/biz14/sunjin_support" target="_blank" class="material-button">
-                        <div class="info"><b>경영지원</b><span>교안 및 실습 데이터 링크</span></div>
+                        <div><b>경영지원</b><span>교안 및 실습 데이터 링크</span></div>
                         <div class="go-icon">→</div>
                     </a>
-
                     <a href="https://padlet.com/biz14/sunjin_it" target="_blank" class="material-button">
-                        <div class="info"><b>IT 직무</b><span>교안 및 실습 데이터 링크</span></div>
+                        <div><b>IT 직무</b><span>교안 및 실습 데이터 링크</span></div>
                         <div class="go-icon">→</div>
                     </a>
-
                     <a href="https://padlet.com/biz14/sunjin_mfg" target="_blank" class="material-button">
-                        <div class="info"><b>생산 품질</b><span>교안 및 실습 데이터 링크</span></div>
+                        <div><b>생산 품질</b><span>교안 및 실습 데이터 링크</span></div>
                         <div class="go-icon">→</div>
                     </a>
-
                     <a href="https://padlet.com/biz14/sunjin_rd" target="_blank" class="material-button">
-                        <div class="info"><b>R&D</b><span>교안 및 실습 데이터 링크</span></div>
+                        <div><b>R&D</b><span>교안 및 실습 데이터 링크</span></div>
                         <div class="go-icon">→</div>
                     </a>
-                    
                     <div style="margin-top: 20px; padding: 15px; background: #fffcf0; border-radius: 12px; font-size: 0.85rem; border: 1px solid #fbeeb5; color: #856404;">
                         위 버튼을 클릭하여 직무별 실습 패들렛으로 이동하세요.
                     </div>
@@ -158,7 +156,6 @@
                 <h3 class="section-title">Gems 결과물 전시관</h3>
                 <button onclick="loadGems()" style="background:var(--sj-red); border:none; color:#fff; padding:8px 16px; border-radius:30px; font-weight:700; cursor:pointer; font-size:0.85rem;">🔄 실시간 업데이트</button>
             </div>
-
             <div class="filter-group" id="categoryFilters">
                 <button class="filter-btn active" onclick="filterCategory('전체')">전체</button>
                 <button class="filter-btn" onclick="filterCategory('영업/마케팅')">영업/마케팅</button>
@@ -167,7 +164,6 @@
                 <button class="filter-btn" onclick="filterCategory('생산 품질')">생산 품질</button>
                 <button class="filter-btn" onclick="filterCategory('R&D')">R&D</button>
             </div>
-
             <div class="grid" id="projectGrid"></div>
         </section>
     </main>
@@ -176,12 +172,28 @@
 
     <script>
         const scheduleData = [
-            { d: "2/12, 2/20, 2/26", t: "영업/마케팅", n: "박윤재", c: "사료 영업 전략 최적화: 농장주 RAG 연동 및 제안서 자동화" },
-            { d: "2/24, 2/26", t: "경영지원", n: "김안나", c: "행정 자동화 & 규정 응대: 인사/전결 규정 학습 Gems 제작" },
-            { d: "2/24", t: "IT 직무", n: "신윤섭", c: "코딩 생산성: 레거시 코드 리뷰 및 기술 문서 자동 생성" },
-            { d: "2/25", t: "생산 품질", n: "전경아", c: "현장 리포팅: 설비 매뉴얼 기반 장애 조치 봇 및 작업 일보 요약" },
-            { d: "2/25", t: "R&D", n: "박윤재", c: "연구 가속화: 글로벌 기술 문헌 요약 및 실험 데이터 해석 보조" }
+            { date: "2/12(목)", title: "영업/마케팅 1차 (박윤재 강사)", desc: "사료 영업 전략 최적화: 농장주 RAG 연동 및 제안서 자동화", time: "13:00~17:00" },
+            { date: "2/23(월)", title: "IT 직무 세션 (신윤섭 강사)", desc: "코딩 생산성: 레거시 코드 리뷰 및 기술 문서 자동 생성", time: "13:00~17:00" },
+            { date: "2/24(화)", title: "[A] 경영지원 1차 (김안나 강사)", desc: "행정 자동화 & 규정 응대: 인사/전결 규정 학습 Gems 제작", time: "13:00~17:00" },
+            { date: "2/24(화)", title: "[B] R&D 전문 과정 (박윤재 강사)", desc: "연구 가속화: 글로벌 기술 문헌 요약 및 데이터 해석 보조", time: "13:00~17:00" },
+            { date: "2/25(수)", title: "[A] 영업/마케팅 2차 (박윤재 강사)", desc: "Gemini / Gems 활용법 실무 심화 과정", time: "13:00~17:00" },
+            { date: "2/25(수)", title: "[B] 생산/품질 관리 (전경아 강사)", desc: "현장 리포팅: 설비 매뉴얼 기반 장애 조치 및 작업 일보 요약", time: "13:00~17:00" },
+            { date: "2/26(목)", title: "경영지원 2차 (김안나 강사)", desc: "Gems 제작 심화 및 결재 문서 요약 실무", time: "13:00~17:00" },
+            { date: "2/27(금)", title: "영업/마케팅 3차 (박윤재 강사)", desc: "우수 Gems 사례 공유 및 최종 배포 가이드", time: "13:00~17:00" }
         ];
+
+        function renderSchedule() {
+            document.getElementById('scheduleList').innerHTML = scheduleData.map(s => `
+                <li class="schedule-item">
+                    <div class="sch-date">${s.date}</div>
+                    <div class="sch-content">
+                        <div class="sch-title">${s.title}</div>
+                        <div class="sch-desc">${s.desc}</div>
+                    </div>
+                    <div class="sch-time">${s.time}</div>
+                </li>
+            `).join('');
+        }
 
         const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/1cNcA4zuicYFIHXaYd1lIIAe_vHKJPcbMjUmFjTY-9po/pub?gid=0&single=true&output=csv";
         let allGems = [];
@@ -194,66 +206,43 @@
             if(id === 'showcase' && allGems.length === 0) loadGems();
         }
 
-        document.getElementById('scheduleBody').innerHTML = scheduleData.map(s => `
-            <tr>
-                <td>${s.d}</td>
-                <td style="text-align:center;"><span class="track-tag">${s.t}</span></td>
-                <td style="white-space:nowrap;"><b>${s.n}</b></td>
-                <td style="color:#555; font-size:0.9rem;">${s.c}</td>
-            </tr>
-        `).join('');
-
         async function loadGems() {
             if (!SHEET_CSV_URL) return;
             const grid = document.getElementById('projectGrid');
             grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:80px; color:#aaa;">데이터를 불러오는 중입니다...</div>';
-            
             try {
                 const res = await fetch(SHEET_CSV_URL + `?t=${Date.now()}`);
                 const text = await res.text();
                 allGems = text.split('\n').slice(1).map(row => {
                     const columns = row.split(',');
-                    return {
-                        category: columns[0]?.trim() || '',
-                        title: columns[1]?.trim() || '',
-                        author: columns[2]?.trim() || '',
-                        link: columns[3]?.trim() || '#'
-                    };
+                    return { category: columns[0]?.trim(), title: columns[1]?.trim(), author: columns[2]?.trim(), link: columns[3]?.trim() || '#' };
                 });
                 filterCategory('전체');
-            } catch(e) { 
-                grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:80px; color:#aaa;">데이터 로딩 오류</div>'; 
-            }
+            } catch(e) { grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:80px; color:#aaa;">로딩 오류</div>'; }
         }
 
         function filterCategory(cat) {
             const grid = document.getElementById('projectGrid');
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.innerText === cat);
-            });
-
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.toggle('active', btn.innerText === cat));
             const filtered = cat === '전체' ? allGems : allGems.filter(g => g.category === cat);
-            
-            if (filtered.length > 0) {
-                grid.innerHTML = filtered.map(row => `
-                    <div class="project-card" onclick="window.open('${row.link}')">
-                        <div class="thumb"><img src="${getThumb(row.link)}" onerror="this.src='https://via.placeholder.com/400x200?text=Sunjin+AI+Gems'"></div>
-                        <div class="body">
-                            <span class="cat">#${row.category}</span>
-                            <h4>${row.title}</h4>
-                            <div class="foot"><span>제작: ${row.author}</span><span style="font-weight:800; color:var(--sj-red)">상세보기 →</span></div>
-                        </div>
+            grid.innerHTML = filtered.map(row => `
+                <div class="project-card" onclick="window.open('${row.link}')">
+                    <div class="thumb"><img src="${getThumb(row.link)}" onerror="this.src='https://via.placeholder.com/400x200?text=Sunjin+AI+Gems'"></div>
+                    <div class="body">
+                        <span class="cat">#${row.category}</span>
+                        <h4>${row.title}</h4>
+                        <div class="foot"><span>제작: ${row.author}</span><span style="font-weight:800; color:var(--sj-red)">상세보기 →</span></div>
                     </div>
-                `).join('');
-            } else {
-                grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:80px; color:#aaa;">해당 카테고리에 등록된 프로젝트가 없습니다.</div>';
-            }
+                </div>
+            `).join('');
         }
 
         function getThumb(url) {
-            if(!url.includes('id=')) return '';
+            if(!url || !url.includes('id=')) return '';
             return `https://drive.google.com/uc?export=view&id=${url.split('id=')[1].split('&')[0]}`;
         }
+
+        window.onload = () => { renderSchedule(); };
     </script>
 </body>
 </html>
